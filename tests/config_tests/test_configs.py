@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from instloader.config_reader import ConfigParser, InstagramConfig, InstagramPage
+from instloader.config_reader import ConfigParser, InstagramLinksConfig, InstagramPage
 from datetime import datetime
 
 PATH_TO_CONFIGS = "tests/config_tests/configs/"
@@ -43,7 +43,7 @@ def test_config_reading(config_name, expected):
 
 def test_instagram_config():
     path = Path(PATH_TO_CONFIGS, "links_test.json")
-    download_config = InstagramConfig(path).download_config
+    download_config = InstagramLinksConfig(path).download_config
 
     assert download_config == [
         InstagramPage(

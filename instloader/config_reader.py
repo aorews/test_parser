@@ -28,7 +28,7 @@ class InstagramPage:
     date_from: datetime
 
 
-class InstagramConfig(ConfigParser):
+class InstagramLinksConfig(ConfigParser):
     def __init__(self, path):
         super().__init__(path)
         self.download_config = self.get_download_config()
