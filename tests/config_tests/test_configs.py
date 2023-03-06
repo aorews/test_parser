@@ -3,46 +3,41 @@ from pathlib import Path
 from instloader.configs import ConfigParser, InstagramLinksConfig, InstagramPage
 from datetime import datetime
 
-PATH_TO_CONFIGS = "tests/config_tests/configs/"
+PATH_TO_CONFIGS = "tests/"
+
+
+@pytest.fixture()
+def test_json():
+    return {
+        "vk": {"login": "test_vk", "pass": "test_vk_pass"},
+        "inst": {"login": "test_inst", "pass": "test_inst_pass"},
+        "Date_from": "2023-02-01T18:10:53",
+        "Links": [
+            {
+                "Instagram Link": "https://www.instagram.com/test1/",
+                "VK album link post photo": "vk.com/group12",
+            },
+            {
+                "Instagram Link": "https://www.instagram.com/test2/",
+                "VK album link stories video": "vk.com/group1",
+            },
+        ],
+    }
 
 
 @pytest.mark.parametrize(
     "config_name, expected",
-    [
-        (
-            "creds.json",
-            {
-                "vk": {"login": "test_vk", "pass": "test_vk_pass"},
-                "inst": {"login": "test_inst", "pass": "test_inst_pass"},
-            },
-        ),
-        (
-            "links_test.json",
-            {
-                "Date_from": "2023-02-01T18:10:53",
-                "Links": [
-                    {
-                        "Instagram Link": "https://www.instagram.com/test1/",
-                        "VK album link post photo": "vk.com/group12",
-                    },
-                    {
-                        "Instagram Link": "https://www.instagram.com/test2/",
-                        "VK album link stories video": "vk.com/group1",
-                    },
-                ],
-            },
-        ),
-    ],
+    [("test_config.json", "test_json")],
 )
-def test_config_reading(config_name, expected):
+def test_config_reading(config_name, expected, request):
     path = Path(PATH_TO_CONFIGS, config_name)
     config = ConfigParser(path=path).config
-
+    expected = request.getfixturevalue(expected)
     assert config == expected
 
 
 def test_instagram_config():
-    path = Path(PATH_TO_CONFIGS, "links_test.json")
+    path = Path(PATH_TO_CONFIGS, "test_config.json")
     download_config = InstagramLinksConfig(path).download_config
 
     assert download_config == [

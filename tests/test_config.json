@@ -1,0 +1,21 @@
+{
+    "vk": {
+      "login": "test_vk",
+      "pass": "test_vk_pass"
+    },
+    "inst": {
+      "login": "test_inst",
+      "pass": "test_inst_pass"
+    },
+    "Date_from": "2023-02-01T18:10:53",
+    "Links": [
+      {
+        "Instagram Link": "https://www.instagram.com/test1/",
+        "VK album link post photo": "vk.com/group12"
+      },
+      {
+        "Instagram Link": "https://www.instagram.com/test2/",
+        "VK album link stories video": "vk.com/group1"
+      }
+    ]
+  }
