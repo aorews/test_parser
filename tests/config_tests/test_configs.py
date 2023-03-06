@@ -11,6 +11,7 @@ def test_json():
     return {
         "vk": {"login": "test_vk", "pass": "test_vk_pass"},
         "inst": {"login": "test_inst", "pass": "test_inst_pass"},
+        "session_path" : "session/instagram.session",
         "Date_from": "2023-02-01T18:10:53",
         "Links": [
             {
@@ -38,7 +39,7 @@ def test_config_reading(config_name, expected, request):
 
 def test_instagram_config():
     path = Path(PATH_TO_CONFIGS, "test_config.json")
-    download_config = InstagramLinksConfig(path).download_config
+    download_config = InstagramLinksConfig(path).config["Links"]
 
     assert download_config == [
         InstagramPage(
