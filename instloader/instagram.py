@@ -9,6 +9,6 @@ class InstagramSession:
             save_metadata=False,
             request_timeout=3,
         )
-        print(login, password)
+        
         self.inst_session.login(login, password)
         self.inst_session.save_session_to_file(filename="instagram.session")
