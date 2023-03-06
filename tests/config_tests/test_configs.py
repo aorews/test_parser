@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from instloader.config_reader import ConfigParser, InstagramLinksConfig, InstagramPage
+from instloader.configs import ConfigParser, InstagramLinksConfig, InstagramPage
 from datetime import datetime
 
 PATH_TO_CONFIGS = "tests/config_tests/configs/"
